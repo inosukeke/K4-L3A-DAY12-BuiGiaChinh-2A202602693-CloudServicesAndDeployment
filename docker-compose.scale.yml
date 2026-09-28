@@ -1,0 +1,11 @@
+# Override dùng khi scale nhiều instance `agent` sau Nginx.
+#
+# 3 container không thể cùng publish cổng 8000 của host, nên bỏ mapping
+# cổng của agent — traffic đi vào qua nginx (http://localhost:8080).
+#
+#   docker compose -f docker-compose.yml -f docker-compose.scale.yml \
+#     --profile lb up -d --scale agent=3
+
+services:
+  agent:
+    ports: !reset []
